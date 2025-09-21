@@ -5,9 +5,7 @@ import delivery_time from "~/assets/image/delivery_time.svg";
 </script>
 
 <template>
-  <div
-    class="relative bg-[#111111] my-8 sm:my-12 lg:my-[121px] overflow-hidden"
-  >
+  <div class="relative bg-[#111111] my-8 sm:my-12 lg:my-[121px]">
     <!-- Background decoration -->
     <div class="absolute inset-0 opacity-5">
       <div

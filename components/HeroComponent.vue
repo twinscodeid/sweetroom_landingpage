@@ -5,7 +5,7 @@ import image_lampu from "~/assets/image/image_lampu.png";
 <template>
   <div class="px-4 sm:px-6 md:px-8 lg:px-[123px] py-8 md:py-16">
     <div
-      class="flex flex-col overflow-hidden lg:flex-row items-center justify-between gap-8 lg:gap-12 xl:gap-16"
+      class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 xl:gap-16"
     >
       <!-- Text Content -->
       <div

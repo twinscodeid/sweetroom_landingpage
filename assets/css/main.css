@@ -1,8 +1,9 @@
 @import "tailwindcss";
-html {
+html,
+body {
   font-family: "Poppins", sans-serif;
   scroll-behavior: smooth;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
 }
 :root {
   --color-primary: #111111;
