@@ -57,6 +57,7 @@ const formatRupiah = (value: number) =>
 <template>
   <div>
     <div
+      data-aos="zoom-in"
       class="shadow-sm hover:shadow-md bg-[#F2F2F2] rounded-b-lg transition flex flex-col"
     >
       <div class="overflow-hidden">

@@ -5,7 +5,7 @@
       ref="navbar"
       class="px-4 md:px-[123px] transition-all duration-300 ease-in-out"
       :class="{
-        'fixed top-0 left-0 right-0 z-50 bg-white/95 backdrop-blur-sm shadow-lg border-gray-100':
+        'fixed top-0 left-0 right-0 z-40 bg-white/95 backdrop-blur-sm shadow-lg border-gray-100':
           isSticky,
         'relative bg-transparent': !isSticky,
       }"

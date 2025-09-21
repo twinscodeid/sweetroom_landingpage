@@ -9,6 +9,7 @@ export default defineNuxtConfig({
     '@nuxt/test-utils',
     '@nuxt/ui',
     '@nuxtjs/google-fonts',
+    'nuxt-aos'
   ],
   vite: {
     plugins: [
@@ -20,5 +21,10 @@ export default defineNuxtConfig({
       Poppins: [100, 200, 300, 400, 500, 600, 700, 800, 900],
     },
     display: 'swap',
-  }
+  },
+  aos: {
+        duration: 800,
+        easing: 'ease-in-out',
+        once: true,
+      }
 })

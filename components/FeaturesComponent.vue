@@ -54,6 +54,7 @@ import delivery_time from "~/assets/image/delivery_time.svg";
         <!-- Feature 1: Free Shipping -->
         <div class="group">
           <div
+            data-aos="fade-right"
             class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 h-full border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/10 transform hover:-translate-y-2"
           >
             <!-- Icon -->
@@ -108,6 +109,7 @@ import delivery_time from "~/assets/image/delivery_time.svg";
         <!-- Feature 2: 0% Installment -->
         <div class="group">
           <div
+            data-aos="zoom-in"
             class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 h-full border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/10 transform hover:-translate-y-2"
           >
             <!-- Icon -->
@@ -165,6 +167,7 @@ import delivery_time from "~/assets/image/delivery_time.svg";
         <!-- Feature 3: Free Consultation -->
         <div class="group md:col-span-2 xl:col-span-1">
           <div
+            data-aos="fade-left"
             class="bg-white/5 backdrop-blur-sm rounded-2xl p-6 sm:p-8 h-full border border-white/10 hover:border-white/20 transition-all duration-300 hover:bg-white/10 transform hover:-translate-y-2"
           >
             <!-- Icon -->

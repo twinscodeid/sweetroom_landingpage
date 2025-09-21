@@ -53,21 +53,28 @@ const socialLinks = [
         </svg>
 
         <div class="relative">
-          <p class="mb-2 text-gray-300">
+          <p data-aos="fade-right" class="mb-2 text-gray-300">
             Konsultasi di rumah, di toko, atau melalui virtual:
           </p>
           <h1
+            data-aos="fade-right"
+            data-aos-delay="100"
             class="text-5xl md:text-7xl font-extrabold leading-tight tracking-tight"
           >
             Interior Desain
           </h1>
-          <p class="mt-6 text-base italic text-gray-200">
+          <p
+            data-aos-delay="200"
+            data-aos="fade-right"
+            class="mt-6 text-base italic text-gray-200"
+          >
             "Ada pertanyaan tentang produk kami atau butuh bantuan dalam memilih
             furnitur yang tepat? Tim kami siap membantu."
           </p>
         </div>
 
         <button
+          data-aos="fade-right"
           class="mt-8 bg-gray-200 cursor-pointer text-black font-semibold py-3 px-8 rounded-lg hover:bg-white transition duration-300"
         >
           Konsultasi sekarang
@@ -75,6 +82,7 @@ const socialLinks = [
 
         <div class="flex items-center gap-3 mt-10">
           <a
+            data-aos="fade-up"
             v-for="social in socialLinks"
             :key="social.name"
             :href="social.href"

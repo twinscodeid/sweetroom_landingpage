@@ -5,10 +5,11 @@ import image_lampu from "~/assets/image/image_lampu.png";
 <template>
   <div class="px-4 sm:px-6 md:px-8 lg:px-[123px] py-8 md:py-16">
     <div
-      class="flex flex-col lg:flex-row items-center justify-between gap-8 lg:gap-12 xl:gap-16"
+      class="flex flex-col overflow-hidden lg:flex-row items-center justify-between gap-8 lg:gap-12 xl:gap-16"
     >
       <!-- Text Content -->
       <div
+        data-aos="fade-right"
         class="text-[#000000] flex flex-col gap-y-4 lg:gap-y-6 w-full lg:w-1/2 order-2 lg:order-1"
       >
         <h1
@@ -68,6 +69,7 @@ import image_lampu from "~/assets/image/image_lampu.png";
           <!-- Main image -->
           <div class="relative overflow-hidden rounded-xl">
             <img
+              data-aos="fade-down"
               :src="image_lampu"
               alt="Sweetroom Premium Furniture"
               class="w-full h-auto max-w-sm sm:max-w-md md:max-w-lg lg:max-w-xl object-contain transform transition-transform duration-500 group-hover:scale-105"
@@ -87,7 +89,7 @@ import image_lampu from "~/assets/image/image_lampu.png";
     </div>
 
     <!-- Optional: Scroll indicator -->
-    <div class="flex justify-center mt-12 lg:mt-16">
+    <div class="flex justify-center mt-14">
       <div
         class="flex flex-col items-center gap-2 text-gray-400 animate-bounce"
       >

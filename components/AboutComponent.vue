@@ -4,7 +4,7 @@ import image_about_2 from "~/assets/image/image_about_2.png";
 </script>
 
 <template>
-  <div class="mt-16 lg:mt-24 px-4 sm:px-6 md:px-8 lg:px-[123px] py-8 lg:py-12">
+  <div class="px-4 sm:px-6 md:px-8 lg:px-[123px] py-8 lg:py-12">
     <!-- Section Header -->
     <div class="text-center mb-12 lg:mb-20">
       <div class="inline-flex items-center gap-4 mb-4">
@@ -43,7 +43,10 @@ import image_about_2 from "~/assets/image/image_about_2.png";
       >
         <!-- Image 1 -->
         <div class="group">
-          <div class="relative overflow-hidden rounded-2xl shadow-lg">
+          <div
+            data-aos="fade-right"
+            class="relative overflow-hidden rounded-2xl shadow-lg"
+          >
             <img
               :src="image_about_1"
               alt="Sweetroom Premium Furniture Design Process"
@@ -56,7 +59,7 @@ import image_about_2 from "~/assets/image/image_about_2.png";
         </div>
 
         <!-- Image 2 -->
-        <div class="group">
+        <div data-aos="fade-right" class="group">
           <div class="relative overflow-hidden rounded-2xl shadow-lg">
             <img
               :src="image_about_2"
@@ -70,7 +73,7 @@ import image_about_2 from "~/assets/image/image_about_2.png";
         </div>
 
         <!-- Text Content -->
-        <div class="space-y-6">
+        <div class="space-y-6" data-aos="fade-left">
           <div class="prose prose-lg">
             <blockquote
               class="text-gray-800 text-lg lg:text-xl leading-relaxed font-medium italic border-l-4 border-[#111111] pl-6"
@@ -97,6 +100,7 @@ import image_about_2 from "~/assets/image/image_about_2.png";
         <!-- Text Content First -->
         <div class="text-center space-y-6">
           <blockquote
+            data-aos="fade-right"
             class="text-gray-800 text-base sm:text-lg leading-relaxed font-medium italic"
           >
             "Di Sweetroom, kami percaya bahwa sebuah ruangan lebih dari sekadar
@@ -106,6 +110,7 @@ import image_about_2 from "~/assets/image/image_about_2.png";
           </blockquote>
 
           <p
+            data-aos="fade-left"
             class="text-gray-700 text-sm sm:text-base leading-relaxed max-w-lg mx-auto"
           >
             Berawal dari keyakinan ini, kami berdedikasi untuk menciptakan
@@ -184,25 +189,25 @@ import image_about_2 from "~/assets/image/image_about_2.png";
       <div
         class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-12 border-t border-gray-200"
       >
-        <div class="text-center">
+        <div data-aos="fade-right" class="text-center">
           <div class="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
             500+
           </div>
           <p class="text-sm text-gray-600">Happy Customers</p>
         </div>
-        <div class="text-center">
+        <div data-aos="zoom-in" class="text-center">
           <div class="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
             50+
           </div>
           <p class="text-sm text-gray-600">Furniture Collections</p>
         </div>
-        <div class="text-center">
+        <div data-aos="zoom-in" class="text-center">
           <div class="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
             5+
           </div>
           <p class="text-sm text-gray-600">Years Experience</p>
         </div>
-        <div class="text-center">
+        <div data-aos="fade-left" class="text-center">
           <div class="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
             100%
           </div>
