@@ -43,7 +43,10 @@ import image_about_2 from "~/assets/image/image_about_2.png";
       >
         <!-- Image 1 -->
         <div class="group">
-          <div data-aos="fade-right" class="relative rounded-2xl shadow-lg">
+          <div
+            data-aos="fade-right"
+            class="relative overflow-hidden rounded-2xl shadow-lg"
+          >
             <img
               :src="image_about_1"
               alt="Sweetroom Premium Furniture Design Process"
