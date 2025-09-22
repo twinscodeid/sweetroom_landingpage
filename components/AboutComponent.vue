@@ -1,6 +1,37 @@
 <script lang="ts" setup>
 import image_about_1 from "~/assets/image/image_about_1.png";
 import image_about_2 from "~/assets/image/image_about_2.png";
+import { useCounter } from "~/utils/counter";
+
+// counter
+const happyCustemer = ref(0);
+const furnitureCollection = ref(0);
+const yearExperience = ref(0);
+const qualityGuarantee = ref(0);
+const sectionRef = ref<HTMLElement | null>(null);
+let hasAnimated = false;
+
+onMounted(() => {
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting && !hasAnimated) {
+          hasAnimated = true; // supaya cuma sekali
+          useCounter(happyCustemer, 500);
+          useCounter(furnitureCollection, 50);
+          useCounter(yearExperience, 5);
+          useCounter(qualityGuarantee, 100);
+
+          observer.disconnect(); // stop observe setelah animasi jalan
+        }
+      });
+    },
+    { threshold: 0.3 } // mulai animasi kalau 30% section keliatan
+  );
+  if (sectionRef.value) {
+    observer.observe(sectionRef.value);
+  }
+});
 </script>
 
 <template>
@@ -187,29 +218,30 @@ import image_about_2 from "~/assets/image/image_about_2.png";
 
       <!-- Statistics or Additional Info -->
       <div
+        ref="sectionRef"
         class="grid grid-cols-2 md:grid-cols-4 gap-6 mt-16 pt-12 border-t border-gray-200"
       >
         <div data-aos="fade-right" class="text-center">
           <div class="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
-            500+
+            {{ happyCustemer }}+
           </div>
           <p class="text-sm text-gray-600">Happy Customers</p>
         </div>
         <div data-aos="zoom-in" class="text-center">
           <div class="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
-            50+
+            {{ furnitureCollection }}+
           </div>
           <p class="text-sm text-gray-600">Furniture Collections</p>
         </div>
         <div data-aos="zoom-in" class="text-center">
           <div class="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
-            5+
+            {{ yearExperience }}+
           </div>
           <p class="text-sm text-gray-600">Years Experience</p>
         </div>
         <div data-aos="fade-left" class="text-center">
           <div class="text-2xl md:text-3xl font-bold text-[#111111] mb-2">
-            100%
+            {{ qualityGuarantee }}%
           </div>
           <p class="text-sm text-gray-600">Quality Guarantee</p>
         </div>
