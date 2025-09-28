@@ -1,12 +1,17 @@
 <script lang="ts" setup>
+interface Variant {
+  size: string;
+  price: number;
+  oldPrice?: number;
+}
 interface Product {
   name: string;
   images: string[];
   sizes: string[];
   colors: string[];
   description: string;
-  price: number;
-  oldPrice?: number;
+  detail?: string;
+  variants: Variant[];
 }
 
 const props = defineProps<{
@@ -18,8 +23,9 @@ const emit = defineEmits(["update:modelValue"]);
 
 // State reaktif untuk interaksi di dalam modal
 const currentImageIndex = ref(0);
-const selectedSize = ref<string | null>(props.product?.sizes[0] || null);
+const selectedVariant = ref<Variant | null>(null);
 const selectedColor = ref<string | null>(props.product?.colors[0] || null);
+const activeTab = ref("deskripsi");
 
 // Computed property untuk mendapatkan gambar saat ini
 const currentImage = computed(() => {
@@ -60,10 +66,11 @@ watch(
   (newProduct) => {
     if (newProduct) {
       currentImageIndex.value = 0;
-      selectedSize.value = newProduct.sizes[0] || null;
-      selectedColor.value = newProduct.colors[0] || null;
+      selectedVariant.value = newProduct.variants?.[0] || null;
+      selectedColor.value = newProduct.colors?.[0] || null;
     }
-  }
+  },
+  { immediate: true }
 );
 
 // Tambahkan dan hapus event listener untuk tombol Escape
@@ -110,7 +117,7 @@ onUnmounted(() => {
             <img
               :src="currentImage"
               :alt="product.name"
-              class="w-full h-full object-cover aspect-square"
+              class="w-full h-full aspect-square object-fill"
             />
             <div
               class="absolute inset-0 flex items-center justify-between px-4"
@@ -163,55 +170,100 @@ onUnmounted(() => {
               <h3 class="text-sm font-medium text-gray-600">Ukuran</h3>
               <div class="flex flex-wrap gap-2 mt-2">
                 <button
-                  v-for="size in product.sizes"
-                  :key="size"
-                  @click="selectedSize = size"
+                  v-for="variant in product.variants"
+                  :key="variant.size"
+                  @click="selectedVariant = variant"
                   :class="[
                     'px-4 py-2 text-sm border rounded-md transition',
-                    selectedSize === size
+                    selectedVariant?.size === variant.size
                       ? 'border-black bg-black text-white'
                       : 'border-gray-300 text-gray-700 hover:bg-gray-100',
                   ]"
                 >
-                  {{ size }}
+                  {{ variant.size }}
                 </button>
               </div>
             </div>
 
             <div class="mt-6">
               <h3 class="text-sm font-medium text-gray-600">Warna</h3>
-              <div class="flex items-center gap-3 mt-2">
+              <div class="flex flex-wrap items-center gap-2 mt-2">
                 <button
                   v-for="color in product.colors"
                   :key="color"
                   @click="selectedColor = color"
-                  class="w-8 h-8 rounded-full border border-gray-200 transition"
-                  :style="{ backgroundColor: color }"
-                  :class="{
-                    'ring-2 ring-offset-2 ring-black': selectedColor === color,
-                  }"
-                ></button>
+                  type="button"
+                  class="px-2 py-1 text-sm border rounded-md transition duration-200 ease-in-out"
+                  :class="[
+                    selectedColor === color
+                      ? 'bg-black text-white border-black'
+                      : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100',
+                  ]"
+                >
+                  {{ color }}
+                </button>
               </div>
             </div>
 
             <div class="mt-6">
-              <h3 class="text-sm font-medium text-gray-600">Deskripsi</h3>
-              <p class="text-base text-gray-700 mt-2">
-                {{ product.description }}
-              </p>
+              <div class="border-b border-gray-200">
+                <nav class="-mb-px flex gap-6" aria-label="Tabs">
+                  <button
+                    @click="activeTab = 'deskripsi'"
+                    :class="[
+                      'py-4 px-1 border-b-2 font-medium text-sm',
+                      activeTab === 'deskripsi'
+                        ? 'border-black text-black'
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
+                    ]"
+                  >
+                    Deskripsi
+                  </button>
+                  <button
+                    @click="activeTab = 'detail'"
+                    :class="[
+                      'py-4 px-1 border-b-2 font-medium text-sm',
+                      activeTab === 'detail'
+                        ? 'border-black text-black'
+                        : 'border-transparent text-gray-500 hover:text-gray-700 hover:border-gray-300',
+                    ]"
+                  >
+                    Detail Produk
+                  </button>
+                </nav>
+              </div>
+
+              <div class="py-6 relative overflow-hidden">
+                <Transition name="fade-slide" mode="out-in">
+                  <div
+                    v-if="activeTab === 'deskripsi'"
+                    key="deskripsi"
+                    class="text-base text-gray-700"
+                  >
+                    {{ product.description }}
+                  </div>
+                  <div
+                    v-else
+                    key="detail"
+                    class="text-base text-gray-700 whitespace-pre-wrap"
+                  >
+                    {{ product.detail }}
+                  </div>
+                </Transition>
+              </div>
             </div>
 
             <div class="mt-8">
               <h3 class="text-sm font-medium text-gray-600">Harga</h3>
               <div class="flex items-baseline gap-3 mt-1">
                 <span
-                  v-if="product.oldPrice"
+                  v-if="selectedVariant?.oldPrice"
                   class="text-lg text-gray-500 line-through"
                 >
-                  Rp {{ product.oldPrice.toLocaleString("id-ID") }}
+                  Rp {{ selectedVariant?.oldPrice.toLocaleString("id-ID") }}
                 </span>
                 <span class="text-2xl font-bold text-black">
-                  Rp {{ product.price.toLocaleString("id-ID") }}
+                  Rp {{ selectedVariant?.price.toLocaleString("id-ID") }}
                 </span>
               </div>
             </div>
@@ -251,5 +303,16 @@ onUnmounted(() => {
 .modal-fade-enter-from .relative,
 .modal-fade-leave-to .relative {
   transform: scale(0.95);
+}
+/* transisi tabs */
+.fade-slide-enter-active,
+.fade-slide-leave-active {
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.fade-slide-enter-from,
+.fade-slide-leave-to {
+  opacity: 0;
+  transform: translateY(10px);
 }
 </style>

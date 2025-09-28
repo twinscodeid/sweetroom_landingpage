@@ -1,18 +1,20 @@
 <script lang="ts" setup>
-import { ref } from "vue";
-import ProductDetailModal from "~/components/DetailProductComponent.vue"; // Pastikan path ini benar
+interface Variant {
+  size: string;
+  price: number;
+  oldPrice?: number;
+}
 
-// 1. Tangkap props dengan benar
 const props = defineProps<{
   product: {
     id: number;
     name: string;
-    image: string;
-    price: number;
-    price_discount: number | null;
+    images: string[];
+    variants: Variant[];
     colors: string[];
     sizes?: string[];
-    description?: string;
+    description: string;
+    detail?: string;
   };
 }>();
 
@@ -22,34 +24,46 @@ interface ProductDetail {
   sizes: string[];
   colors: string[];
   description: string;
-  price: number;
-  oldPrice?: number;
+  detail?: string;
+  variants: Variant[];
 }
 
 const isModalOpen = ref(false);
 const selectedProduct = ref<ProductDetail | null>(null);
+const selectedColor = ref(props.product.colors[0]);
 
 const openProductDetail = () => {
   const fullProductData: ProductDetail = {
     name: props.product.name,
     images: [
-      props.product.image,
+      ...props.product.images,
       "https://images.pexels.com/photos/4352247/pexels-photo-4352247.jpeg",
       "https://images.pexels.com/photos/5998136/pexels-photo-5998136.jpeg",
     ],
     sizes: props.product.sizes || ["160 x 100 cm", "120 x 100 cm"],
     colors: props.product.colors,
-    description:
-      props.product.description ||
-      "Ini adalah deskripsi produk yang menarik. Dibuat dengan bahan berkualitas tinggi untuk kenyamanan maksimal.",
-    price: props.product.price_discount || props.product.price,
-    oldPrice: props.product.price_discount ? props.product.price : undefined,
+    description: props.product.description,
+    variants: props.product.variants,
+    detail: props.product.detail || "",
   };
 
   selectedProduct.value = fullProductData;
   isModalOpen.value = true;
 };
 
+const displayPrice = computed(() => {
+  if (props.product.variants && props.product.variants.length > 0) {
+    return props.product.variants[0].price;
+  }
+  return 0; // Nilai default jika tidak ada varian
+});
+
+const displayOldPrice = computed(() => {
+  if (props.product.variants && props.product.variants.length > 0) {
+    return props.product.variants[0].oldPrice;
+  }
+  return undefined; // Nilai default jika tidak ada varian
+});
 const formatRupiah = (value: number) =>
   new Intl.NumberFormat("id-ID").format(value);
 </script>
@@ -62,9 +76,9 @@ const formatRupiah = (value: number) =>
     >
       <div class="overflow-hidden">
         <img
-          :src="product.image"
+          :src="product.images[0]"
           :alt="product.name"
-          class="w-full h-[243px] object-cover hover:scale-110 transition duration-300 ease-in-out"
+          class="w-full aspect-square object-fill hover:scale-110 bg-gray-100 transition duration-300 ease-in-out"
         />
       </div>
 
@@ -77,23 +91,31 @@ const formatRupiah = (value: number) =>
           </h3>
           <div class="flex items-center justify-between">
             <div
-              v-if="product.price_discount"
+              v-if="displayOldPrice"
               class="text-xs sm:text-sm text-red-500 line-through"
             >
-              Rp {{ formatRupiah(product.price) }}
+              Rp {{ formatRupiah(displayOldPrice) }}
             </div>
             <div v-else></div>
-            <div class="flex gap-2">
-              <span
-                v-for="(color, index) in product.colors"
-                :key="index"
-                :style="{ backgroundColor: color }"
-                class="w-5 h-5 rounded-full border border-gray-300"
-              />
+            <div class="flex flex-wrap items-center gap-1">
+              <button
+                v-for="color in product.colors"
+                :key="color"
+                @click="selectedColor = color"
+                type="button"
+                class="px-2 py-1 text-sm border rounded-md transition duration-200 ease-in-out"
+                :class="[
+                  selectedColor === color
+                    ? 'bg-black text-white border-black'
+                    : 'bg-white text-gray-700 border-gray-300 hover:bg-gray-100',
+                ]"
+              >
+                {{ color }}
+              </button>
             </div>
           </div>
           <div class="text-base sm:text-lg mt-1 font-semibold text-gray-900">
-            Rp {{ formatRupiah(product.price_discount || product.price) }}
+            Rp {{ formatRupiah(displayPrice) }}
           </div>
         </div>
 
@@ -106,7 +128,7 @@ const formatRupiah = (value: number) =>
       </div>
     </div>
 
-    <ProductDetailModal
+    <DetailProductComponent
       v-model:modelValue="isModalOpen"
       :product="selectedProduct"
     />
