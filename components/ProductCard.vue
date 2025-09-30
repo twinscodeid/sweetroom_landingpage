@@ -9,7 +9,7 @@ const props = defineProps<{
   product: {
     id: number;
     name: string;
-    images: string[];
+    imagesByColor: Record<string, string>;
     variants: Variant[];
     colors: string[];
     sizes?: string[];
@@ -20,7 +20,7 @@ const props = defineProps<{
 
 interface ProductDetail {
   name: string;
-  images: string[];
+  imagesByColor: Record<string, string>;
   sizes: string[];
   colors: string[];
   description: string;
@@ -32,14 +32,17 @@ const isModalOpen = ref(false);
 const selectedProduct = ref<ProductDetail | null>(null);
 const selectedColor = ref(props.product.colors[0]);
 
+const selectedImage = computed(() => {
+  return (
+    props.product.imagesByColor[selectedColor.value] ||
+    Object.values(props.product.imagesByColor)[0]
+  );
+});
+
 const openProductDetail = () => {
   const fullProductData: ProductDetail = {
     name: props.product.name,
-    images: [
-      ...props.product.images,
-      "https://images.pexels.com/photos/4352247/pexels-photo-4352247.jpeg",
-      "https://images.pexels.com/photos/5998136/pexels-photo-5998136.jpeg",
-    ],
+    imagesByColor: { ...props.product.imagesByColor },
     sizes: props.product.sizes || ["160 x 100 cm", "120 x 100 cm"],
     colors: props.product.colors,
     description: props.product.description,
@@ -76,7 +79,7 @@ const formatRupiah = (value: number) =>
     >
       <div class="overflow-hidden">
         <img
-          :src="product.images[0]"
+          :src="selectedImage"
           :alt="product.name"
           class="w-full aspect-square object-fill hover:scale-110 bg-gray-100 transition duration-300 ease-in-out"
         />

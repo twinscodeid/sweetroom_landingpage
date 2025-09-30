@@ -6,7 +6,7 @@ interface Variant {
 }
 interface Product {
   name: string;
-  images: string[];
+  imagesByColor: Record<string, string>;
   sizes: string[];
   colors: string[];
   description: string;
@@ -27,9 +27,20 @@ const selectedVariant = ref<Variant | null>(null);
 const selectedColor = ref<string | null>(props.product?.colors[0] || null);
 const activeTab = ref("deskripsi");
 
+// gambar galeri yang terurut berdasarkan 'colors'
+const galleryImages = computed(() => {
+  if (!props.product) return [];
+  // Memetakan array 'colors' untuk mendapatkan URL gambar dalam urutan yang konsisten
+  return (
+    props.product?.colors?.map(
+      (color: string | number) => props.product?.imagesByColor?.[color] || ""
+    ) || []
+  );
+});
+
 // Computed property untuk mendapatkan gambar saat ini
 const currentImage = computed(() => {
-  return props.product?.images[currentImageIndex.value] || "";
+  return galleryImages.value[currentImageIndex.value] || "";
 });
 
 // Fungsi untuk menutup modal
@@ -39,19 +50,38 @@ const closeModal = () => {
 
 // Fungsi navigasi galeri gambar
 const nextImage = () => {
-  if (props.product) {
+  if (galleryImages.value.length > 0) {
     currentImageIndex.value =
-      (currentImageIndex.value + 1) % props.product.images.length;
+      (currentImageIndex.value + 1) % galleryImages.value.length;
   }
 };
 
 const prevImage = () => {
-  if (props.product) {
+  if (galleryImages.value.length > 0) {
     currentImageIndex.value =
-      (currentImageIndex.value - 1 + props.product.images.length) %
-      props.product.images.length;
+      (currentImageIndex.value - 1 + galleryImages.value.length) %
+      galleryImages.value.length;
   }
 };
+
+// fungsi baru untuk memilih warna
+const selectColor = (color: string) => {
+  if (!props.product) return;
+  // Temukan index dari warna yang diklik
+  const index = props.product.colors.indexOf(color);
+  if (index !== -1) {
+    // Update index gambar dan warna terpilih
+    currentImageIndex.value = index;
+    selectedColor.value = color;
+  }
+};
+
+// Awasi perubahan pada index gambar, lalu update warna yang dipilih
+watch(currentImageIndex, (newIndex) => {
+  if (props.product) {
+    selectedColor.value = props.product.colors[newIndex];
+  }
+});
 
 // Fungsi untuk menangani penekanan tombol Escape
 const handleKeydown = (e: KeyboardEvent) => {
@@ -191,7 +221,7 @@ onUnmounted(() => {
                 <button
                   v-for="color in product.colors"
                   :key="color"
-                  @click="selectedColor = color"
+                  @click="selectColor(color)"
                   type="button"
                   class="px-2 py-1 text-sm border rounded-md transition duration-200 ease-in-out"
                   :class="[
