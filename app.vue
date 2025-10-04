@@ -1,5 +1,5 @@
 <script setup lang="ts">
-const siteUrl = "https://sweetroom.netlify.app/";
+const siteUrl = "https://sweetroom.netlify.app";
 
 const defaultOgImage = `${siteUrl}/logo_sweetroom_rmbg_1.svg`;
 const socialProfiles = [
