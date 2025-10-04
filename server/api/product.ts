@@ -59,96 +59,96 @@ Tiktok 		: Sweetroomfurni
 Tokopedia 	: Sweetroomfurni 
         `,
       },
-       {
-        id: 2,
-        name: "Sofa Hijau Elegan",
-        imagesByColor: {
-          "putih": "/image/image_product_1.png",
-          "hitam": "/image/image_product_2.png",
-          "motif kayu": "/image/image_product_3.png"
-        },
-        sizes: ["M", "L", "XL"],
-        colors: ["putih", "hitam", "motif kayu"],
-        description: "Sofa dengan desain elegan, nyaman digunakan untuk keluarga.",
-        detail: "Detail lengkap untuk Sofa Hijau Elegan.",
-        variants: [
-          { size: "M", price: 3550000, oldPrice: 4100000 },
-          { size: "L", price: 3850000, oldPrice: 4500000 },
-          { size: "XL", price: 4150000, oldPrice: 4900000 },
-        ],
-      },
-      {
-        id: 3,
-        name: "Sofa Cokelat Klasik",
-        imagesByColor: {
-          "putih": "/image/image_product_1.png",
-          "hitam": "/image/image_product_2.png",
-          "motif kayu": "/image/image_product_3.png"
-        },
-        sizes: ["S", "M", "L"],
-        colors: ["putih", "hitam", "motif kayu"],
-        description: "Sofa klasik berbahan kulit sintetis, mudah dibersihkan.",
-        detail: "Detail lengkap untuk Sofa Cokelat Klasik.",
-        variants: [
-          { size: "S", price: 3150000, oldPrice: 3800000 },
-          { size: "M", price: 3450000, oldPrice: 4100000 },
-          { size: "L", price: 3750000, oldPrice: 4400000 },
-        ],
-      },
-      {
-        id: 4,
-        name: "Kursi Putih Modern",
-        imagesByColor: {
-          "putih": "/image/image_product_1.png",
-          "hitam": "/image/image_product_2.png",
-          "motif kayu": "/image/image_product_3.png"
-        },
-        sizes: ["S", "M"],
-        colors: ["putih", "hitam", "motif kayu"],
-        description: "Kursi single modern dengan desain ergonomis untuk kenyamanan maksimal.",
-        detail: "Detail lengkap untuk Kursi Putih Modern.",
-        variants: [
-          { size: "S", price: 1890000, oldPrice: 2250000 },
-          { size: "M", price: 2190000, oldPrice: 2550000 },
-        ],
-      },
-      {
-        id: 5,
-        name: "Sofa Beige Cozy",
-        imagesByColor: {
-          "putih": "/image/image_product_1.png",
-          "hitam": "/image/image_product_2.png",
-          "motif kayu": "/image/image_product_3.png"
-        },
-        sizes: ["M", "L", "XL"],
-        colors: ["putih", "hitam", "motif kayu"],
-        description: "Sofa cozy dengan nuansa beige hangat, cocok untuk ruang keluarga.",
-        detail: "Detail lengkap untuk Sofa Beige Cozy.",
-        variants: [
-            { size: "M", price: 3490000, oldPrice: 3950000 },
-            { size: "L", price: 3790000, oldPrice: 4250000 },
-            { size: "XL", price: 4090000, oldPrice: 4550000 },
-        ]
-      },
-      {
-        id: 6,
-        name: "Sofa Hijau Tosca",
-        imagesByColor: {
-          "putih": "/image/image_product_1.png",
-          "hitam": "/image/image_product_2.png",
-          "motif kayu": "/image/image_product_3.png"
-        },
-        sizes: ["S", "M", "L", "XL"],
-        colors: ["putih", "hitam", "motif kayu"],
-        description: "Sofa tosca stylish yang memberikan kesan segar pada ruangan Anda.",
-        detail: "Detail lengkap untuk Sofa Hijau Tosca.",
-        variants: [
-            { size: "S", price: 3250000, oldPrice: 3800000 },
-            { size: "M", price: 3550000, oldPrice: 4100000 },
-            { size: "L", price: 3850000, oldPrice: 4400000 },
-            { size: "XL", price: 4150000, oldPrice: 4700000 },
-        ]
-      },
+      //  {
+      //   id: 2,
+      //   name: "Sofa Hijau Elegan",
+      //   imagesByColor: {
+      //     "putih": "/image/image_product_1.png",
+      //     "hitam": "/image/image_product_2.png",
+      //     "motif kayu": "/image/image_product_3.png"
+      //   },
+      //   sizes: ["M", "L", "XL"],
+      //   colors: ["putih", "hitam", "motif kayu"],
+      //   description: "Sofa dengan desain elegan, nyaman digunakan untuk keluarga.",
+      //   detail: "Detail lengkap untuk Sofa Hijau Elegan.",
+      //   variants: [
+      //     { size: "M", price: 3550000, oldPrice: 4100000 },
+      //     { size: "L", price: 3850000, oldPrice: 4500000 },
+      //     { size: "XL", price: 4150000, oldPrice: 4900000 },
+      //   ],
+      // },
+      // {
+      //   id: 3,
+      //   name: "Sofa Cokelat Klasik",
+      //   imagesByColor: {
+      //     "putih": "/image/image_product_1.png",
+      //     "hitam": "/image/image_product_2.png",
+      //     "motif kayu": "/image/image_product_3.png"
+      //   },
+      //   sizes: ["S", "M", "L"],
+      //   colors: ["putih", "hitam", "motif kayu"],
+      //   description: "Sofa klasik berbahan kulit sintetis, mudah dibersihkan.",
+      //   detail: "Detail lengkap untuk Sofa Cokelat Klasik.",
+      //   variants: [
+      //     { size: "S", price: 3150000, oldPrice: 3800000 },
+      //     { size: "M", price: 3450000, oldPrice: 4100000 },
+      //     { size: "L", price: 3750000, oldPrice: 4400000 },
+      //   ],
+      // },
+      // {
+      //   id: 4,
+      //   name: "Kursi Putih Modern",
+      //   imagesByColor: {
+      //     "putih": "/image/image_product_1.png",
+      //     "hitam": "/image/image_product_2.png",
+      //     "motif kayu": "/image/image_product_3.png"
+      //   },
+      //   sizes: ["S", "M"],
+      //   colors: ["putih", "hitam", "motif kayu"],
+      //   description: "Kursi single modern dengan desain ergonomis untuk kenyamanan maksimal.",
+      //   detail: "Detail lengkap untuk Kursi Putih Modern.",
+      //   variants: [
+      //     { size: "S", price: 1890000, oldPrice: 2250000 },
+      //     { size: "M", price: 2190000, oldPrice: 2550000 },
+      //   ],
+      // },
+      // {
+      //   id: 5,
+      //   name: "Sofa Beige Cozy",
+      //   imagesByColor: {
+      //     "putih": "/image/image_product_1.png",
+      //     "hitam": "/image/image_product_2.png",
+      //     "motif kayu": "/image/image_product_3.png"
+      //   },
+      //   sizes: ["M", "L", "XL"],
+      //   colors: ["putih", "hitam", "motif kayu"],
+      //   description: "Sofa cozy dengan nuansa beige hangat, cocok untuk ruang keluarga.",
+      //   detail: "Detail lengkap untuk Sofa Beige Cozy.",
+      //   variants: [
+      //       { size: "M", price: 3490000, oldPrice: 3950000 },
+      //       { size: "L", price: 3790000, oldPrice: 4250000 },
+      //       { size: "XL", price: 4090000, oldPrice: 4550000 },
+      //   ]
+      // },
+      // {
+      //   id: 6,
+      //   name: "Sofa Hijau Tosca",
+      //   imagesByColor: {
+      //     "putih": "/image/image_product_1.png",
+      //     "hitam": "/image/image_product_2.png",
+      //     "motif kayu": "/image/image_product_3.png"
+      //   },
+      //   sizes: ["S", "M", "L", "XL"],
+      //   colors: ["putih", "hitam", "motif kayu"],
+      //   description: "Sofa tosca stylish yang memberikan kesan segar pada ruangan Anda.",
+      //   detail: "Detail lengkap untuk Sofa Hijau Tosca.",
+      //   variants: [
+      //       { size: "S", price: 3250000, oldPrice: 3800000 },
+      //       { size: "M", price: 3550000, oldPrice: 4100000 },
+      //       { size: "L", price: 3850000, oldPrice: 4400000 },
+      //       { size: "XL", price: 4150000, oldPrice: 4700000 },
+      //   ]
+      // },
     ],
   };
 });

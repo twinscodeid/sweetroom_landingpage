@@ -103,7 +103,27 @@ watch(
   { immediate: true }
 );
 
-// Tambahkan dan hapus event listener untuk tombol Escape
+const orderViaWA = () => {
+  if (!props.product || !selectedVariant.value) return;
+
+  const phoneNumber = "6281229280159";
+  const message = `
+Halo, saya ingin memesan produk:
+
+Nama Produk: ${props.product.name}
+Ukuran: ${selectedVariant.value.size}
+Warna: ${selectedColor.value}
+Harga: Rp ${selectedVariant.value.price.toLocaleString("id-ID")}
+
+Apakah masih tersedia?
+`;
+
+  const url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(
+    message
+  )}`;
+  window.open(url, "_blank"); // buka di tab baru
+};
+
 onMounted(() => {
   window.addEventListener("keydown", handleKeydown);
 });
@@ -300,6 +320,7 @@ onUnmounted(() => {
 
             <div class="mt-8">
               <button
+                @click="orderViaWA"
                 class="w-full py-3 px-6 bg-white border border-black rounded-lg font-semibold text-black hover:bg-black hover:text-white transition"
               >
                 Pesan Sekarang Melalui WA
@@ -334,6 +355,7 @@ onUnmounted(() => {
 .modal-fade-leave-to .relative {
   transform: scale(0.95);
 }
+
 /* transisi tabs */
 .fade-slide-enter-active,
 .fade-slide-leave-active {
